@@ -17,5 +17,5 @@ class YazilarModel(models.Model):
     class Meta:
         verbose_name="Yazi"
         verbose_name_plural="Yazilar"
-        db_name="Yazi"
+        db_table="Yazi"
 
