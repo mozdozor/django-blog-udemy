@@ -21,5 +21,5 @@ class YazilarModel(models.Model):
         db_table="Yazi"
 
 
-        def __str__(self):
-            return self.baslik
+    def __str__(self):
+        return self.baslik
