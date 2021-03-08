@@ -6,7 +6,7 @@ from blog.models import KategoriModel, YazilarModel,YorumModel,iletisimModel
 
 admin.site.register(KategoriModel)
 
-
+@admin.register(YazilarModel)
 class YazilarAdmin(admin.ModelAdmin):
     search_fields=('baslik','icerik')
     list_display=(
@@ -14,9 +14,9 @@ class YazilarAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(YazilarModel,YazilarAdmin)
 
 
+@admin.register(YorumModel)
 class YorumAdmin(admin.ModelAdmin):
     list_display=(
         "yazan","olusturulma_tarihi","duzenlenme_tarihi"
@@ -24,9 +24,9 @@ class YorumAdmin(admin.ModelAdmin):
     search_fields=("yazan__username",)
 
 
-admin.site.register(YorumModel,YorumAdmin)
 
 
+@admin.register(iletisimModel)
 class iletisimAdmin(admin.ModelAdmin):
     list_display=(
         "email","olusturulma_tarihi"
@@ -34,4 +34,3 @@ class iletisimAdmin(admin.ModelAdmin):
     search_fields=("email",)
 
 
-admin.site.register(iletisimModel,iletisimAdmin)
