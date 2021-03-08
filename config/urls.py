@@ -14,12 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from blog.views import iletisim
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("iletisim",iletisim)
-]
+    path("",include("blog.urls")),  
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+ #www.postfriends/blog/iletisim linki iöin ayarlandı
+
+#eğer ben direkt www.postfriend/iletism dersem giremem 404 hatası verir ama eğer
+#path içindeki tırnak içinde blog/ yazmak yerine direkt "" yazarsak iletisim calısacaktır 
