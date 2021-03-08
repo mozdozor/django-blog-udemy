@@ -1,7 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from blog.models import KategoriModel
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User  user clasında güncelleme yaptığımız için bunuda disabled yaptık
 from ckeditor.fields import RichTextField
 
 
@@ -13,7 +13,7 @@ class YazilarModel(models.Model):
     duzenlenme_tarihi=models.DateTimeField(auto_now=True)
     slug=AutoSlugField(populate_from="baslik",unique=True)
     kategoriler=models.ManyToManyField(KategoriModel,related_name="yazi")
-    yazar=models.ForeignKey(User,on_delete=models.CASCADE,related_name="yazilar")
+    yazar=models.ForeignKey("account.CustomUserModel",on_delete=models.CASCADE,related_name="yazilar")
 
     class Meta:
         verbose_name="Yazi"
