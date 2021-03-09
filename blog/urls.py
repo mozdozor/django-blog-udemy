@@ -5,6 +5,6 @@ from blog.views import iletisim,anasayfa
 
 
 urlpatterns = [ 
-    path("",anasayfa),
-    path("iletisim",iletisim),
+    path("",anasayfa,name="anasayfa"),
+    path("iletisim",iletisim,name="iletisim"),
 ]
