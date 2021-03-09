@@ -18,15 +18,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                
-                {% for kategori in  kategoriler%}
+              
+                {% for kategori in  kategoriler %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">{{kategori.isim}}</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'kategori' kategoriSlug=kategori.slug %}">{{kategori.isim}}</a>
                 </li>
-                    
+                
                 {% endfor %}
                     
-
+ 
                
                
               
