@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'blog',
     #third party app
     'ckeditor',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,7 @@ AUTH_USER_MODEL="account.CustomUserModel"
 
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"media/")  #base_dir demek manage.py dosyasının olduğu yol demek
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

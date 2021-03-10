@@ -18,7 +18,7 @@ Anasayfa
           </div>
           <div class="col-md-8">
               <div class="card-body">
-                  <h5 class="card-title">{{yazi.baslik}}</h5>
+                  <a href="{% url 'detay' slug=yazi.slug %}"><h5 class="card-title">{{yazi.baslik}}</h5></a>
                   <p class="card-text">{{yazi.icerik|safe|truncatechars_html:150}}</p> <!-- truncatechars_html html i yazmazsak yerler kayıyordu html kodunun truncatezini yazdık-->
                   <!--  timesince kodu duzenlenme tarihinin şu anki zman ile farkını bastırır örneğin 2 saat önce düzenlendi falan yazar-->
                   <p class="card-text"><small class="text-muted">Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}</small></p>

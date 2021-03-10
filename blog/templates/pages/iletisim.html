@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
 Anasayfa
-  
-{% endblock  %}
-  
+
+{% endblock %}
+
 
 {% block content %}
 
-    iletişim
-        
+<form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <input type="submit" class="btn btn-danger" value="Gönder">
+</form>
+<br><br><br>
+<!-- form.as_p formu alt alt yazdırır sanki bir paragrafmış gibi biz crispy kullandığımız için onu yapmadık-->
+{% endblock %}
 
-{% endblock  %}
-  
+<!-- cripsy formunu kullanabilmek için önce pipev install ile yükledik daha sonra yüklediğimiz
+dosyayı config settings içinde  installed apps kısmına kaydettik daha sonra yine settings kısmında en alta 
+cripsy template package boostrap kodunu yazdık djangonun sayfasında farklı tasarımlarda var biz boostrap4 ü seçtik 
+eğer oraya farkı bir tasarım yazarsan o tasarım çıkar ekrana-->
