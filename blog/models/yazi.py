@@ -6,7 +6,9 @@ from ckeditor.fields import RichTextField
 from blog.abstract_models import DateAbstractModel   #yazdığımız date abstrack clasını import ettik
 
 class YazilarModel(DateAbstractModel):    #models.Modeli silip import ettiğimiz classı yazdık zaten o da temelinde mdoels.Model classsını içeriyor
-    resim=models.ImageField(upload_to="yazi_resimleri")
+    resim=models.ImageField(
+        upload_to="yazi_resimleri",
+    )
     baslik=models.CharField(max_length=50)
     icerik=RichTextField()
     

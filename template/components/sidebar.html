@@ -7,7 +7,7 @@
             {% if request.user.is_authenticated %}
             <li class="list-group-item">Profil Düzenle</li>
             <li class="list-group-item">Şifre Değiştir</li>
-            <li class="list-group-item">Yazı Ekle</li>
+            <a href="{% url 'yazi_ekle' %}"><li class="list-group-item">Yazı Ekle</li></a>
             <a href="{% url 'yazilarim' %}"><li class="list-group-item">Yazılarım</li></a>
             <li class="list-group-item">Çıkış Yap</li>
 

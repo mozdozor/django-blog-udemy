@@ -15,7 +15,8 @@ Yazilarim
             <th scope="col">İd</th>
             <th scope="col">Başlık</th>
             <th scope="col">Güncellenme Tarihi</th>
-            <th scope="col">Aksiyonlar</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +31,8 @@ Yazilarim
             <th scope="row">{{yazi.id}}</th>
             <td>{{yazi.baslik}}</td>
             <td>{{yazi.duzenlenme_tarihi}}</td>
-            <td>Aksiyonlar Gelecek</td>
+            <td><a class="btn btn-primary" href="{% url 'yazi-guncelle' slug=yazi.slug %}">Düzenle</a></td>
+            <td><a class="btn btn-danger" href="{% url 'yazi-sil' slug=yazi.slug %}">Sil</a></td>
         </tr>
 
         {% empty %}
