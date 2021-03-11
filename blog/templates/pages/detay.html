@@ -3,63 +3,79 @@
 
 {% block title %}
 {{yazi.baslik}}
-  
-{% endblock  %}
-  
+
+{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
 
 
-    <div class="card mb-3">
-      <div class="row g-0">
-          <div class="col-md-4">
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
 
-              <img src="{{yazi.resim.url}}" class="img">
-          </div>
-          <div class="col-md-8">
-              <div class="card-body">
-                  <h5 class="card-title">{{yazi.baslik}}</h5>
-                  <p class="card-text">{{yazi.icerik|safe}}</p> <!-- truncatechars_html html i yazmazsak yerler kayıyordu html kodunun truncatezini yazdık-->
-                  <!--  timesince kodu duzenlenme tarihinin şu anki zman ile farkını bastırır örneğin 2 saat önce düzenlendi falan yazar-->
-                  <p class="card-text"><small class="text-muted">Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}</small></p>
-              </div>
-          </div>
-      </div>
-    </div>
-
-<h5>Yorumlar</h5>
-
-{% for yorum in yorumlar %}
-    
-    <div class="card">
-        <div class="card-body" style="display: flex;flex-direction: row;">
-            <div>
-
-                
-                {% if yorum.yazan.avatar %}
-                <img src="{{yorum.yazan.avatar.url}}" class="rounded" style="width: 60%;">
-                {% else %}
-                <img src="{% static 'img/no-avatar.png' %}" class="rounded" class="pt-4" width="75px" height="75px">
-                    
-                {% endif %}                             
-    
+            <img src="{{yazi.resim.url}}" class="img">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{yazi.baslik}}</h5>
+                <p class="card-text">{{yazi.icerik|safe}}</p>
+                <!-- truncatechars_html html i yazmazsak yerler kayıyordu html kodunun truncatezini yazdık-->
+                <!--  timesince kodu duzenlenme tarihinin şu anki zman ile farkını bastırır örneğin 2 saat önce düzenlendi falan yazar-->
+                <p class="card-text"><small class="text-muted">Önce Paylaşıldı:
+                        {{yazi.duzenlenme_tarihi|timesince}}</small></p>
             </div>
-            <div>
-    
-                <h5 class="card-title">{{yorum.yazan.username}}</h5>
-                <p class="card-text">{{yorum.yorum}} </p>
-    
-            </div>
-        
         </div>
     </div>
-    
-    {% empty %}
-    <p>Bu yazı içi hiç yorum yapılmamış</p>
+</div>
+
+<h5>Yorumlar</h5>
+<br>
+
+{% if request.user.is_authenticated %}
+<!-- eğer giriş yapmış bir kullanıcı varsa yorum yapsın -->
+<!-- eğer kullanıcı yorum yaparsa tekrar bu sayfaya gelsin diye action belirtmiyoruz sadece methot yazıyoruz-->
+<!-- post işlemleri yaparken csrf tokeni yazmayı unutma-->
+<form method="POST">
+    {% csrf_token %}
+    {{yorum_ekle_form|crispy}}
+    <input type="submit" value="Yorum Yap" class="btn btn-primary mt-3 mb-3">
+</form>
+{% else %}
+<p>Yorum Yapmak İçin Giriş Yapınız</p>
+{% endif %}
+<br><br>
+
+{% for yorum in yorumlar %}
+
+<div class="card">
+    <div class="card-body" style="display: flex;flex-direction: row;">
+        <div>
+
+
+            {% if yorum.yazan.avatar %}
+            <img src="{{yorum.yazan.avatar.url}}" class="rounded" style="width: 60%;">
+            {% else %}
+            <img src="{% static 'img/no-avatar.png' %}" class="rounded" class="pt-4" width="75px" height="75px">
+
+            {% endif %}
+
+        </div>
+        <div>
+
+            <h5 class="card-title">{{yorum.yazan.username}}</h5>
+            <p class="card-text">{{yorum.yorum}} </p>
+
+        </div>
+
+    </div>
+</div>
+
+{% empty %}
+<p>Bu yazı içi hiç yorum yapılmamış</p>
 
 {% endfor %}
 
-  
-{% endblock  %}
-  
+
+{% endblock %}
