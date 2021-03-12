@@ -6,10 +6,10 @@
 
             {% if request.user.is_authenticated %}
             <li class="list-group-item">Profil Düzenle</li>
-            <li class="list-group-item">Şifre Değiştir</li>
+            <a href="{% url 'sifre-degistir' %}"><li class="list-group-item">Şifre Değiştir</li></a>
             <a href="{% url 'yazi_ekle' %}"><li class="list-group-item">Yazı Ekle</li></a>
             <a href="{% url 'yazilarim' %}"><li class="list-group-item">Yazılarım</li></a>
-            <li class="list-group-item">Çıkış Yap</li>
+            <a href="{% url 'cikis' %}"><li class="list-group-item">Çıkış Yap</li></a>
 
             {% else %}
             Login formu gelecek
