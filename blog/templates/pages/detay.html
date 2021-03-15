@@ -7,6 +7,7 @@
 {% endblock %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
 
 
@@ -24,7 +25,10 @@
                 <!-- truncatechars_html html i yazmazsak yerler kayıyordu html kodunun truncatezini yazdık-->
                 <!--  timesince kodu duzenlenme tarihinin şu anki zman ile farkını bastırır örneğin 2 saat önce düzenlendi falan yazar-->
                 <p class="card-text"><small class="text-muted">Önce Paylaşıldı:
-                        {{yazi.duzenlenme_tarihi|timesince}}</small></p>
+                        {{yazi.duzenlenme_tarihi|timesince}}
+                    <br>Yazar : <a href="{% url 'profil' username=yazi.yazar.username %}">{{yazi.yazar.username}}</a></small></p>
+                        
+                
             </div>
         </div>
     </div>

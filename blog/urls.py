@@ -1,13 +1,13 @@
 
 from django.urls import path,include
-from blog.views import iletisim,anasayfa,kategoriListeleme,yazilarim,DetayModel,yazi_ekle,yazi_guncelle,yazi_sil,yorum_sil
+from blog.views import IletisimFormView,anasayfa,kategoriListeleme,yazilarim,DetayModel,YaziEkleCreateView,YaziGuncelleUpdateView,YaziSilDeleteView,yorum_sil
 from django.views.generic import TemplateView,RedirectView
 
 
 
 urlpatterns = [ 
     path("",anasayfa,name="anasayfa"),
-    path("iletisim",iletisim,name="iletisim"),
+    path("iletisim",IletisimFormView.as_view(),name="iletisim"),
     path("hakkimda",TemplateView.as_view(
         template_name="pages/hakkimda.html"
     ),name="hakkimda"),
@@ -18,9 +18,9 @@ urlpatterns = [
     path('kategori/<slug:kategoriSlug>', kategoriListeleme.as_view() , name='kategori'),
     path('yazilarim',yazilarim,name='yazilarim'),
     path('detay/<slug:slug>', DetayModel.as_view() , name='detay'),
-    path('yazi-sil/<slug:slug>', yazi_sil , name='yazi-sil'),
-    path('yazi-ekle',yazi_ekle,name='yazi_ekle'),
-    path('yazi-guncelle/<slug:slug>', yazi_guncelle , name='yazi-guncelle'),
+    path('yazi-sil/<slug:slug>', YaziSilDeleteView.as_view(), name='yazi-sil'),
+    path('yazi-ekle',YaziEkleCreateView.as_view(),name='yazi_ekle'),
+    path('yazi-guncelle/<slug:slug>', YaziGuncelleUpdateView.as_view(), name='yazi-guncelle'),
     path('yorum-sil/<int:id>', yorum_sil , name='yorum-sil'),
    
 ]
