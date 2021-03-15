@@ -31,6 +31,19 @@
                
               
             </ul>
+            {% if  request.user.is_authenticated %}
+            <a href="{% url 'cikis' %}">Çıkış Yap</a>
+            &emsp;
+            {% else %}            
+            <a href="{% url 'giris' %}">Giriş Yap</a>
+            &emsp;
+            <a href="{% url 'kayit' %}">Kayıt Ol</a>
+            &emsp;
+            {% endif %}
+           
+           
+            
+           
             <form action="{% url 'anasayfa' %}" class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" name="sorgu" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Profil Güncelle
+
+{% endblock %}
+
+
+
+{% block content %}
+
+{% include 'components/message.html' %}
+
+<form  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <input type="submit" class="btn btn-danger" value="Profil Güncelle">
+</form>
+<br><br><br>
+
+{% endblock %}
+

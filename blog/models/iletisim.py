@@ -8,8 +8,6 @@ class iletisimModel(models.Model):
     mesaj=models.TextField()
     olusturulma_tarihi=models.DateTimeField(auto_now_add=True)
     
-
-
     class Meta:
         db_table="iletisim"
         verbose_name="İletişim"

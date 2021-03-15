@@ -4,17 +4,13 @@
             <li class="list-group-item">Menü</li>
 
 
-            {% if request.user.is_authenticated %}
-            <li class="list-group-item">Profil Düzenle</li>
+            <a href="{% url 'profil-guncelle' %}"><li class="list-group-item">Profil Düzenle</li></a>
             <a href="{% url 'sifre-degistir' %}"><li class="list-group-item">Şifre Değiştir</li></a>
             <a href="{% url 'yazi_ekle' %}"><li class="list-group-item">Yazı Ekle</li></a>
             <a href="{% url 'yazilarim' %}"><li class="list-group-item">Yazılarım</li></a>
             <a href="{% url 'cikis' %}"><li class="list-group-item">Çıkış Yap</li></a>
 
-            {% else %}
-            Login formu gelecek
-
-            {% endif %}
+        
 
 
 
