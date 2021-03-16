@@ -135,3 +135,55 @@ EMAIL_PORT = '587'
 DEFAULT_FROM_EMAIL = 'muhammetay651@gmail.com'
 EMAIL_HOST_USER = 'muhammetay651@gmail.com'
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
+
+
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'basit_ifade': {
+            'format': '{levelname} {asctime} {module}  {message}',
+            'style': '{',
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+           
+            'class': 'logging.FileHandler',
+            'filename': 'logs/konu_okuma.log',
+            'formatter': 'basit_ifade',
+        }
+    },
+    'loggers': {
+        'konu_okuma' : {
+
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+
+        }
+       
+    },
+}
+
+
+
+
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn=env("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
+
+#  SENTRY İŞLEMLERİ İÇİN YUKARIDAKİ KODLARI HAZIR SENTRYNİN SİTESİNDEN ALDIK VE DSN KODUNU GİTHUBA GÖNDERMEMEK İÇİN
+#.env KULLANDIK
