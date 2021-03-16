@@ -11,6 +11,9 @@ urlpatterns = [
     path("hakkimda",TemplateView.as_view(
         template_name="pages/hakkimda.html"
     ),name="hakkimda"),
+    path('email-gonderildi', TemplateView.as_view(
+        template_name="pages/email-gonderildi.html"
+    ) , name='email-gonderildi'),
     #aşağıdaki redirectviewi yönlendirmeye yarar sadece sosyal medya hesaplarında kullanabilirisn
     path('yonlendir',RedirectView.as_view(
         url="https://www.google.com"

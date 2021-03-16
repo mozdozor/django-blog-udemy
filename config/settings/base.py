@@ -1,21 +1,38 @@
-
 import os
 from pathlib import Path
+import environ
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+
+
+env=environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR , ".env"))
+
+#ENVİRON kısımlarını biz ekledik githuba secret_keyi göndermemek için  ************** AŞAĞISI ÖNEMLİİİİİİİİİİİİ
+
+#NORMALDE environ.Env.read_env() BÖYLEYDİ AMA BİZ SETTINGS.PY DOSYASINI PARÇALADĞIMIZ İÇİN .env DOSYASINI 
+#BULURKEN KAFASI KARIŞIYOR O YÜZDEN KENDİMİZ ELİMİZ İLE ONA BİR PATH VERİYORUZ Kİ .env DOSYASINA ULAŞABİLSİN
+
+
+#DAHA SONRA LAUNCH.JSON DOSYASINA "--settings=config.settings.development" BU KODU YAZIYORUZ
+
+
+
+#   NORMALDE YUKARIDAKİ PARENT SAYISI RESOLVEDEN SONRA 2 TANEYDİ AMA BİZ SETTİNGS.PY Yİ BİR KLASÖR DAHA 
+#ALTA İNDİRDİĞİMİZ İÇİN BİR PARENT DAHA YAZDIK
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')x-gw4kb++j&382*vco^r%1&lwwi*ghiihxujhnsqzsr&+-i07'
+SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -67,34 +84,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 
 # Internationalization
@@ -136,3 +125,13 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media/")
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = "/"
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'
+DEFAULT_FROM_EMAIL = 'muhammetay651@gmail.com'
+EMAIL_HOST_USER = 'muhammetay651@gmail.com'
+EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")

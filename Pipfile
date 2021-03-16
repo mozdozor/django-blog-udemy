@@ -10,6 +10,7 @@ pillow = "*"
 django-ckeditor = "*"
 django-crispy-forms = "*"
 crispy = "*"
+django-environ = "*"
 
 [dev-packages]
 
