@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     #third party app
     'ckeditor',
     'crispy_forms',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -172,18 +173,3 @@ LOGGING = {
 }
 
 
-
-
-
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn=env("SENTRY_DSN"),
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
-
-#  SENTRY İŞLEMLERİ İÇİN YUKARIDAKİ KODLARI HAZIR SENTRYNİN SİTESİNDEN ALDIK VE DSN KODUNU GİTHUBA GÖNDERMEMEK İÇİN
-#.env KULLANDIK
